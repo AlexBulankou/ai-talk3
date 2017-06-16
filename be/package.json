@@ -1,0 +1,17 @@
+{
+  "name": "be",
+  "version": "1.0.0",
+  "description": "Container Monitoring Talk Back End Service",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.2",
+    "mongodb": "^2.2.27",
+    "applicationinsights": "^0.21.0"
+  }
+}

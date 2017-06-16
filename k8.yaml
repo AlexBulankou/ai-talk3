@@ -1,0 +1,42 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: ai-talk3-app
+  labels:
+    name: ai-talk3-app
+    context: ai-talk3-context
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: ai-talk3-app
+        context: ai-talk3-context
+    spec:
+      containers:
+      - name: be
+        image: bulankou/ai-talk3:be_0.3
+        ports:
+          - containerPort: 8080
+            name: http
+        env:
+          - name: AI_KEY
+            value: 1ad28713-5105-4d18-addd-f650079e29ac
+---
+apiVersion: v1
+kind: Service
+metadata: 
+  name: ai-talk3-service
+  labels: 
+    name: ai-talk3-app
+    context: ai-talk3-context
+spec: 
+  type: LoadBalancer
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector: 
+    name: ai-talk3-app
+    context: ai-talk3-context
+---
