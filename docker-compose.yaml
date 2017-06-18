@@ -1,0 +1,40 @@
+version: '3'
+services:
+ # Backend service
+ be:
+  build:
+   context: ./be
+   dockerfile: be.dockerfile
+  ports:
+  - 8080:8080
+  environment:
+  - AI_KEY=1ad28713-5105-4d18-addd-f650079e29ac
+  container_name: "be"
+ # Redis cache service
+ redis:
+  image: redis
+  ports:
+  - 6379:6379
+  container_name: "redis"
+ # Load generator service
+ lg:
+  depends_on: 
+  - be
+  image: python:3
+  command: bash -c "pip install --no-cache-dir urllib3;while true;do python -c 'import urllib.request;print (\"\".join(str(urllib.request.urlopen(\"http://be:8080/stock?s=\"+s).getcode())+\" \" for s in [\"AMZN\",\"AAPL\",\"FB\",\"MSFT\",\"GOOG\",\"IBM\",\"SNAP\",\"CSCO\",\"INTC\",\"VZ\",\"HPQ\",\"WDC\"]))';done;"
+  container_name: "lg"
+ # AI sidecar monitoring service
+ ai-sidecar:
+  image: microsoft/applicationinsights
+  volumes:
+  - /var/run/docker.sock:/docker.sock
+  container_name: "ai"
+  command: ikey=a7fb39b1-4421-4fae-b25d-6765d5a11d19
+ # Dashboard service
+ portainer:
+  image: portainer/portainer
+  ports:
+  - 9000:9000
+  volumes:
+  - /var/run/docker.sock:/var/run/docker.sock
+  container_name: "dashboard"
