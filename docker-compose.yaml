@@ -5,6 +5,7 @@ services:
   build:
    context: ./be
    dockerfile: be.dockerfile
+  #image: bulankou/ai-talk3:be_0.4
   ports:
   - 8080:8080
   environment:
@@ -16,13 +17,46 @@ services:
   ports:
   - 6379:6379
   container_name: "redis"
- # Load generator service
- lg:
+ #Load generator service for backend
+ lg-be:
   depends_on: 
   - be
   image: python:3
   command: bash -c "pip install --no-cache-dir urllib3;while true;do python -c 'import urllib.request;print (\"\".join(str(urllib.request.urlopen(\"http://be:8080/stock?s=\"+s).getcode())+\" \" for s in [\"AMZN\",\"AAPL\",\"FB\",\"MSFT\",\"GOOG\",\"IBM\",\"SNAP\",\"CSCO\",\"INTC\",\"VZ\",\"HPQ\",\"WDC\"]))';done;"
-  container_name: "lg"
+  container_name: "lg-be"
+ # Front end
+ fe:
+  depends_on: 
+  - be
+  build:
+   context: ./fe
+   dockerfile: fe.dockerfile
+  #image: bulankou/ai-talk3:fe_0.4
+  ports:
+  - 5000:5000
+  container_name: "fe"
+ #Load generator service for frontend
+ #lg-fe:
+  #depends_on: 
+  #- fe
+  #image: python:3
+  #command: bash -c "pip install --no-cache-dir urllib3;while true;do python -c 'import urllib.request;print (\"\".join(str(urllib.request.urlopen(\"http://fe:5000/Home/Stock/\"+s).getcode())+\" \" for s in [\"AMZN\",\"AAPL\",\"FB\",\"MSFT\",\"GOOG\",\"IBM\",\"SNAP\",\"CSCO\",\"INTC\",\"VZ\",\"HPQ\",\"WDC\"]))';sleep 1;done;"
+  #container_name: "lg_fe"
+ #Selenium standalone chrome
+ lg-se:
+  depends_on:
+  - fe
+  image: selenium/standalone-chrome
+  container_name: "lg-se"
+  ports:
+  - 4444:4444
+ #Selenium test
+ lg-se-fe:
+  depends_on:
+  - lg-se
+  image: python:3
+  command: bash -c "pip install --no-cache-dir selenium;while true;do python -c 'import time;from selenium import webdriver;from selenium.webdriver.common.desired_capabilities import DesiredCapabilities;driver=webdriver.Remote(command_executor=\"http://lg-se:4444/wd/hub\",desired_capabilities=DesiredCapabilities.CHROME);driver.get(\"http://fe:5000/Home/Details?stock=aapl\");time.sleep(5);driver.quit();';sleep 1;done;"
+  container_name: "lg-se-fe"
  # AI sidecar monitoring service
  ai-sidecar:
   image: microsoft/applicationinsights

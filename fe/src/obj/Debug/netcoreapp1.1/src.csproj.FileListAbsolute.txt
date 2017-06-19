@@ -1,0 +1,8 @@
+/Users/alexb/Documents/gh/ab-ai-talk3/fe/src/bin/Debug/netcoreapp1.1/src.deps.json
+/Users/alexb/Documents/gh/ab-ai-talk3/fe/src/bin/Debug/netcoreapp1.1/src.runtimeconfig.json
+/Users/alexb/Documents/gh/ab-ai-talk3/fe/src/bin/Debug/netcoreapp1.1/src.runtimeconfig.dev.json
+/Users/alexb/Documents/gh/ab-ai-talk3/fe/src/bin/Debug/netcoreapp1.1/src.dll
+/Users/alexb/Documents/gh/ab-ai-talk3/fe/src/bin/Debug/netcoreapp1.1/src.pdb
+/Users/alexb/Documents/gh/ab-ai-talk3/fe/src/obj/Debug/netcoreapp1.1/src.AssemblyInfo.cs
+/Users/alexb/Documents/gh/ab-ai-talk3/fe/src/obj/Debug/netcoreapp1.1/src.dll
+/Users/alexb/Documents/gh/ab-ai-talk3/fe/src/obj/Debug/netcoreapp1.1/src.pdb

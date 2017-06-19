@@ -31,3 +31,8 @@ kubectl create -f k8.yaml
 ## Run with docker-compose
 * Deploy with docker-compose
 ``docker compose -f docker-compose.yaml up``
+
+## Deploy to Azure SWARM cluster
+``sudo ssh -fNL 2375:localhost:2375 -p 2200 alex@ai-talk3mgmt.westeurope.cloudapp.azure.com -i $HOME/.ssh/id_rsa2``
+``export DOCKER_HOST=:2375``
+``docker info``

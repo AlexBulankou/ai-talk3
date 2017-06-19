@@ -1,0 +1,8 @@
+/Users/alexb/Documents/gh/ab-ai-talk3/fe/src/bin/Release/netcoreapp1.1/fe.deps.json
+/Users/alexb/Documents/gh/ab-ai-talk3/fe/src/bin/Release/netcoreapp1.1/fe.runtimeconfig.json
+/Users/alexb/Documents/gh/ab-ai-talk3/fe/src/bin/Release/netcoreapp1.1/fe.runtimeconfig.dev.json
+/Users/alexb/Documents/gh/ab-ai-talk3/fe/src/bin/Release/netcoreapp1.1/fe.dll
+/Users/alexb/Documents/gh/ab-ai-talk3/fe/src/bin/Release/netcoreapp1.1/fe.pdb
+/Users/alexb/Documents/gh/ab-ai-talk3/fe/src/obj/Release/netcoreapp1.1/fe.AssemblyInfo.cs
+/Users/alexb/Documents/gh/ab-ai-talk3/fe/src/obj/Release/netcoreapp1.1/fe.dll
+/Users/alexb/Documents/gh/ab-ai-talk3/fe/src/obj/Release/netcoreapp1.1/fe.pdb

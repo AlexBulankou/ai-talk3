@@ -61,6 +61,7 @@ app.get('/stock', function (req, res) {
             if (reply) {
                 console.log(stock + " data found in redis");
                 data = reply;
+                res.end(data);
             } else {
                 console.log(stock + " data wasn't found in redis");
                 // otherwise attempt to get the data from finance server
@@ -75,11 +76,13 @@ app.get('/stock', function (req, res) {
                         redisClient.expire(stock, 20)
                         // write it to data
                         data = financeServerData;
+                        res.end(data);
 
                     } else {
                         console.log(stock + " data cannot be retrieved from backend server");
                         // if it cannot be retrieved from finance serfver retrurn server error
                         res.statusCode = 500;
+                        res.end();
                     }
                 });
             }
@@ -87,9 +90,8 @@ app.get('/stock', function (req, res) {
     } else {
         // stock cannot be retrieved, return 'Not found'
         res.statusCode = 400;
+       res.end();
     }
-
-    res.end(data);
 });
 
 
