@@ -22,8 +22,8 @@ services:
   depends_on: 
   - be
   image: python:3
-  command: bash -c "pip install --no-cache-dir urllib3;while true;do python -c 'import urllib.request;print (\"\".join(str(urllib.request.urlopen(\"http://be:8080/stock?s=\"+s).getcode())+\" \" for s in [\"AMZN\",\"AAPL\",\"FB\",\"MSFT\",\"GOOG\",\"IBM\",\"SNAP\",\"CSCO\",\"INTC\",\"VZ\",\"HPQ\",\"WDC\"]))';done;"
-  container_name: "lg-be"
+  #command: bash -c "pip install --no-cache-dir urllib3;while true;do python -c 'import urllib.request;print (\"\".join(str(urllib.request.urlopen(\"http://be:8080/stock?s=\"+s).getcode())+\" \" for s in [\"AMZN\",\"AAPL\",\"FB\",\"MSFT\",\"GOOG\",\"IBM\",\"SNAP\",\"CSCO\",\"INTC\",\"VZ\",\"HPQ\",\"WDC\"]))';done;"
+  #container_name: "lg-be"
  # Front end
  fe:
   depends_on: 

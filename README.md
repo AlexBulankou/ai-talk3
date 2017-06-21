@@ -36,3 +36,19 @@ kubectl create -f k8.yaml
 ``sudo ssh -fNL 2375:localhost:2375 -p 2200 alex@ai-talk3mgmt.westeurope.cloudapp.azure.com -i $HOME/.ssh/id_rsa2``
 ``export DOCKER_HOST=:2375``
 ``docker info``
+
+## Starting from clean Ubuntu VM
+```
+git clone https://github.com/AlexBulankou/ai-talk3 .
+```
+* Follow steps here: https://docs.docker.com/engine/installation/linux/ubuntu/#install-using-the-repository
+```
+sudo service docker start
+sudo docker run hello-world
+sudo apt install docker-compose
+sudo apt-get upgrade docker-ce
+sudo docker start
+sudo docker-compose -f docker-compose.yaml up
+```
+ 
+
