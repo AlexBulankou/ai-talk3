@@ -13,6 +13,20 @@ docker build -f be.dockerfile -t bulankou/ai-talk3:be_0.3 .
 * Push to dockerhub
 ``docker push bulankou/ai-talk3:be_0.3``
 
+## Starting from clean Ubuntu VM
+* Clone repo: ```git clone https://github.com/AlexBulankou/ai-talk3 .```
+* Follow steps here to install docker engine: https://docs.docker.com/engine/installation/linux/ubuntu/#install-using-the-repository
+
+* Start docker, install docker compose and compose-up
+```
+sudo service docker start
+sudo docker run hello-world
+
+sudo sh -c 'curl -L https://github.com/docker/compose/releases/download/1.14.0/docker-compose-Linux-x86_64  >  /usr/local/bin/docker-compose'
+sudo chmod +x /usr/local/bin/docker-compose
+sudo docker-compose up -d
+```
+
 
 ## Deploy with kubernetes minikube
 
@@ -37,18 +51,5 @@ kubectl create -f k8.yaml
 ``export DOCKER_HOST=:2375``
 ``docker info``
 
-## Starting from clean Ubuntu VM
-```
-git clone https://github.com/AlexBulankou/ai-talk3 .
-```
-* Follow steps here: https://docs.docker.com/engine/installation/linux/ubuntu/#install-using-the-repository
-```
-sudo service docker start
-sudo docker run hello-world
-sudo apt install docker-compose
-sudo apt-get upgrade docker-ce
-sudo docker start
-sudo docker-compose -f docker-compose.yaml up
-```
  
 
